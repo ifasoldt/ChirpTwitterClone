@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
+    Rails.logger.info request.body.read
     if @user.save
       render json: @user, status: :created, location: @user
     else

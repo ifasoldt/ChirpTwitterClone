@@ -3,8 +3,8 @@ class User < ApplicationRecord
   acts_as_follower
   acts_as_followable
   has_secure_password
-  validates :api_token, presence: true, uniqueness: true
-  before_validation :generate_api_token, on: :create
+  validates :token, presence: true, uniqueness: true
+  before_validation :generate_token, on: :create
 
   private
 
