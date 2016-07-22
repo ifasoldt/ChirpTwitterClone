@@ -5,10 +5,7 @@ class TweetsController < ApplicationController
 
   #Tony or I probably should redirect if current user is not logged in.
   def index
-    @tweets = Tweet.timeline(current_user)
-
-    render json: {tweets: @tweets, current_user: current_user}
-  else
+    render json: current_user, serializer: UserWithTweetsSerializer
   end
 
   # GET /tweets/1

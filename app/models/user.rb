@@ -12,6 +12,10 @@ class User < ApplicationRecord
     User.where.not(id: followees(User, pluck: :id)).where.not(id: id).limit(5)
   end
 
+  def timeline_tweets
+    Tweet.timeline(self)
+  end
+
 
 private
 

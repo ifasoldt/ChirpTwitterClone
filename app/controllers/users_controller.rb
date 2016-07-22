@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    # Reject the current_user (note: use SQL, not actual reject)
     @users = User.all
 
     render json: @users
@@ -13,13 +14,6 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  def user_timeline
-  end
-
-
-  def logged_in_user
-
-  end
 
   def login
     @user = User.find_by(email: params[:email])
