@@ -11,7 +11,7 @@ def random_user
   User.offset(rand(User.count)).first
 end
 
-25.times do
+100.times do
   User.create!(password:"password", name:Faker::Name.name, email:Faker::Internet.email, picture_url: "http://photo.net/photodb/random-photo?category=Portraits", created_at: Faker::Time.between(5.weeks.ago, DateTime.now))
   puts "lets go"
 end
