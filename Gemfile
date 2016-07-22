@@ -17,6 +17,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'pry-rails'
 gem 'rack-cors'
 gem 'socialization'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

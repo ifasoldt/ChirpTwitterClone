@@ -13,27 +13,34 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def user_timeline
+  end
+
+
+  def logged_in_user
+
+  end
+
   def login
-    @user = User.find_by(username: params[:login_info][:username])
+    @user = User.find_by(email: params[:email])
     if @user
-      if @user.authenticate(params[:login_info][:password])
-        render json: @user
+      if @user.authenticate(params[:password])
+        render json: @user, serializer: CurrentUserSerializer
       else
-        @error = {error: "Username or password does not exist, please try again"}
-        render json: @error
+        @error = {error: "Email and/or password does not exist, please try again"}
+        render json: @error, status: 403
       end
     else
-      @error = {error: "Username or password does not exist, please try again"}
-      render json: @error
+      @error = {error: "Email and/or password does not exist, please try again"}
+      render json: @error, status: 403
     end
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
-    Rails.logger.info request.body.read
     if @user.save
-      render json: @user, status: :created, location: @user
+      render json: @user, serializer: CurrentUserSerializer, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end

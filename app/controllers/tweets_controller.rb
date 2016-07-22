@@ -2,11 +2,13 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :update, :destroy]
   before_action :current_user
 
-  # GET /tweets
+
+  #Tony or I probably should redirect if current user is not logged in.
   def index
     @tweets = Tweet.timeline(current_user)
 
-    render json: @tweets
+    render json: {tweets: @tweets, current_user: current_user}
+  else
   end
 
   # GET /tweets/1
@@ -17,9 +19,11 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user = current_user
 
     if @tweet.save
-      render json: @tweet, status: :created, location: @tweet
+      @tweets = Tweet.timeline(current_user)
+      render json: @tweets, status: :created
     else
       render json: @tweet.errors, status: :unprocessable_entity
     end
@@ -47,6 +51,6 @@ class TweetsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def tweet_params
-      params.require(:tweet).permit(:body, :user_id)
+      params.permit(:body)
     end
 end
