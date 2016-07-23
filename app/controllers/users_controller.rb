@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    current_user
     # Reject the current_user (note: use SQL, not actual reject)
     @users = User.order(:name).where.not(id: current_user.id)
 
