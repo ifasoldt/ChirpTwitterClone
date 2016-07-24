@@ -13,4 +13,8 @@ class Tweet < ApplicationRecord
     Tweet.where(user_id: all_ids).order("created_at DESC")
   end
 
+  def self.searched_tweets(params)
+    Tweet.where("body ILIKE ?", "%#{params}%").order("created_at DESC")
+  end
+
 end

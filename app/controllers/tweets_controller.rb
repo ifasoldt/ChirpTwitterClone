@@ -19,8 +19,7 @@ class TweetsController < ApplicationController
     @tweet.user = current_user
 
     if @tweet.save
-      @tweets = Tweet.timeline(current_user)
-      render json: @tweets, status: :created
+      render json: current_user, serializer: UserWithTweetsSerializer, status: :created
     else
       render json: @tweet.errors, status: :unprocessable_entity
     end
