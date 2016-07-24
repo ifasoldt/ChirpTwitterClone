@@ -38,6 +38,8 @@ class User < ApplicationRecord
     Tweet.timeline(self)
   end
 
+  def
+
 
 private
 

@@ -18,6 +18,7 @@ gem 'pry-rails'
 gem 'rack-cors'
 gem 'socialization'
 gem 'faker'
+gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
