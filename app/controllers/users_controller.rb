@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
+  before_action :current_user, only: [:index]
 
   # GET /users
   def index
     # Reject the current_user (note: use SQL, not actual reject)
     if params[:page]
       @users = User.order(:name).where.not(id: current_user.id).page(params[:page])
-      render json: @users, each_serializer: UserIndexSerializer, meta: pagination_dict(@users)
+      render json: @users, scope: current_user, scope_name: :current_user, each_serializer: UserIndexSerializer, meta: pagination_dict(@users)
     else
       @users = User.order(:name).where.not(id: current_user.id)
-      render json: @users, each_serializer: UserIndexSerializer
+      render json: @users, scope: current_user, scope_name: :current_user, each_serializer: UserIndexSerializer
     end
   end
 
   # GET /users/1
   def show
     if params[:page]
-      render json:  @user, scope: {page: params[:page]}, serializer: UserProfileSerializer, meta: {total_pages: @user.tweets.count/25}
+      render json:  @user, scope: {page: params[:page]}, serializer: UserProfileSerializer, meta: pagination_dict(@user.tweets)
     else
       render json: @user, serializer: UserProfileSerializer
     end
