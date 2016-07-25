@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
   acts_as_follower
   acts_as_followable
   has_secure_password
@@ -36,6 +36,10 @@ class User < ApplicationRecord
 
   def timeline_tweets
     Tweet.timeline(self)
+  end
+
+  def tweet_count
+    tweets.count
   end
 
 

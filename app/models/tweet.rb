@@ -5,6 +5,7 @@ class Tweet < ApplicationRecord
   validates :body, presence: true
   validates :body, length: {maximum: 160}
   after_save :create_tildetags, on: :create
+  # default_scope {order(:created_at)}   This means that every time posts are gotten ANYWHERE, they will be ordered by created_at.
 
   def self.timeline(user)
      if user.followees(User)

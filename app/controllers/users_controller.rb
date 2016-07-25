@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
-
+#Usually this would be a "create" method on authentication controller because you want to keep all your routes "RESTful"
   def login
     @user = User.find_by(email: params[:email])
     if @user
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      UserMailer.welcome_email(@user)
+      UserMailer.welcome_email(@user).deliver
       render json: @user, serializer: CurrentUserSerializer, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user
       @user.password = SecureRandom.hex(12)
-      UserMailer.forgot_password_email(@user, @user.password)
+      UserMailer.forgot_password_email(@user, @user.password).deliver
     end
   end
 
