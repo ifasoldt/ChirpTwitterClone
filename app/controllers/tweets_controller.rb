@@ -4,7 +4,6 @@ class TweetsController < ApplicationController
 
 
   #Tony or I probably should redirect if current user is not logged in.
-    # @pages = (@indy_ruby_basic_users[:total_count]/30.0).ceil
 
 
   def index

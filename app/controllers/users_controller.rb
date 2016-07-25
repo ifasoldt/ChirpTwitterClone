@@ -59,13 +59,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def forgot_password
-    @user = User.find_by(email: params[:email])
-    if @user
-      @user.password = SecureRandom.hex(12)
-      UserMailer.forgot_password_email(@user, @user.password).deliver
-    end
-  end
+  # def forgot_password
+  #   @user = User.find_by(email: params[:email])
+  #   if @user
+  #     @user.password = SecureRandom.hex(12)
+  #     UserMailer.forgot_password_email(@user, @user.password).deliver
+  #   end
+  # end
 
   # DELETE /users/1
   def destroy
