@@ -1,6 +1,15 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ActionMailer::Base.smtp_settings = {
+  :address => "smtp.sendgrid.net",
+  :port => 587,
+  :domain => "https://guarded-bayou-26088.herokuapp.com"
+  :authentication => :plain,
+  :user_name => "isaiahfasoldt",
+  :password => ENV["sendgrid_password"]
+}
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

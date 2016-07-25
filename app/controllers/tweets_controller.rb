@@ -5,8 +5,14 @@ class TweetsController < ApplicationController
 
   #Tony or I probably should redirect if current user is not logged in.
     # @pages = (@indy_ruby_basic_users[:total_count]/30.0).ceil
+
+
   def index
+    if params[:page]
+      render json: current_user, scope: {page: params[:page]}, serializer: UserWithTweetsSerializer, meta: {total_pages: current_user.timeline_tweets.count/25}
+    else
       render json: current_user, serializer: UserWithTweetsSerializer
+    end
   end
 
   # GET /tweets/1

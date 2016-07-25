@@ -11,6 +11,12 @@ class UserProfileSerializer < ActiveModel::Serializer
 
   has_many :followers
   has_many :followees
-  has_many :tweets
+  has_many :tweets do
+    if scope[:page]
+      object.tweets.page(scope[:page])
+    else
+      object.tweets
+    end
+  end
 
 end

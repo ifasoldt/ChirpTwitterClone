@@ -4,14 +4,22 @@ class UsersController < ApplicationController
   # GET /users
   def index
     # Reject the current_user (note: use SQL, not actual reject)
-    @users = User.order(:name).where.not(id: current_user.id)
-
-    render json: @users, each_serializer: UserIndexSerializer
+    if params[:page]
+      @users = User.order(:name).where.not(id: current_user.id).page(params[:page])
+      render json: @users, each_serializer: UserIndexSerializer, meta: pagination_dict(@users)
+    else
+      @users = User.order(:name).where.not(id: current_user.id)
+      render json: @users, each_serializer: UserIndexSerializer
+    end
   end
 
   # GET /users/1
   def show
-    render json: @user, serializer: UserProfileSerializer
+    if params[:page]
+      render json:  @user, scope: {page: params[:page]}, serializer: UserProfileSerializer, meta: {total_pages: @user.tweets.count/25}
+    else
+      render json: @user, serializer: UserProfileSerializer
+    end
   end
 
 
@@ -34,6 +42,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      UserMailer.welcome_email(@user)
       render json: @user, serializer: CurrentUserSerializer, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -49,7 +58,13 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def forgot_password
+    @user = User.find_by(email: params[:email])
+    if @user
+      @user.password = SecureRandom.hex(12)
+      UserMailer.forgot_password_email(@user, @user.password)
+    end
+  end
 
   # DELETE /users/1
   def destroy

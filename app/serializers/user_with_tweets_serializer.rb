@@ -1,7 +1,13 @@
 class UserWithTweetsSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :picture_url, :followers_count, :followees_count
 
-  has_many :timeline_tweets
+  has_many :timeline_tweets do
+    if scope[:page]
+      object.timeline_tweets.page(scope[:page])
+    else
+      object.timeline_tweets
+    end
+  end
 
   def followers
     object.followers(User)

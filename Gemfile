@@ -19,6 +19,8 @@ gem 'rack-cors'
 gem 'socialization'
 gem 'faker'
 gem 'kaminari'
+gem 'sendgrid'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
