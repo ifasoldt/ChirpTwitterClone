@@ -6,7 +6,7 @@ Rails.application.configure do
   :port => 587,
   :domain => "https://guarded-bayou-26088.herokuapp.com",
   :authentication => :plain,
-  :user_name => "isaiahfasoldt",
+  :user_name => ENV["sendgrid_username"],
   :password => ENV["sendgrid_password"],
 }
 
