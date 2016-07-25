@@ -4,7 +4,7 @@ class Tweet < ApplicationRecord
   has_many :tildetags, through: :tildetaggings
   validates :body, presence: true
   validates :body, length: {maximum: 160}
-  after_save :create_tildetag, on: :create
+  after_save :create_tildetags, on: :create
 
   def self.timeline(user)
      if user.followees(User)
@@ -24,7 +24,7 @@ class Tweet < ApplicationRecord
 
 private
 
-  def create_tildetag
+  def create_tildetags
     post_words = body.split
     post_words.each do |word|
       if word.start_with?("~")
