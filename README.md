@@ -193,6 +193,8 @@ On Validation failure:
 
 { "body": ["is too long (maximum is 160 characters)"]}
 
+---
+
 ### GET - <https://guarded-bayou-26088.herokuapp.com/user> Get the information of a single user.
 
 Required params:
@@ -251,6 +253,8 @@ On success: (200)
 
 On validation failure: (404) {"error": "You need to be logged in to do that"}
 
+---
+
 ### GET - <https://guarded-bayou-26088.herokuapp.com/users> GET a list of all users.
 
 Required params:
@@ -296,6 +300,8 @@ On success: (200)
 
 On validation failure: (400) {"error": "You need to be logged in to do that"}, OR {"error": "You cannot follow someone you are already following"}
 
+---
+
 ### POST <https://guarded-bayou-26088.herokuapp.com/follow/5>
 
 Required params:
@@ -307,3 +313,7 @@ Required params:
 On success: (200)
 
 On validation failure: (400) {"error": "You need to be logged in to do that"}, OR {"error": "You must be following someone to unfollow them."}
+
+---
+
+###
