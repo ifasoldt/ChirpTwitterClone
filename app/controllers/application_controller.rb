@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
     @user
   end
 
+  def require_user
+    render json: {error: "You need to be logged in to do that"}, status: :forbidden unless current_user
+  end
+
   def pagination_dict(object)
     {
       current_page: object.current_page,

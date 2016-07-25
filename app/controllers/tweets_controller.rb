@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :update, :destroy]
   before_action :current_user
+  before_action :require_user
 
 
   #Tony or I probably should redirect if current user is not logged in.
