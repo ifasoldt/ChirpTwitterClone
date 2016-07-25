@@ -81,7 +81,9 @@ On success (200): {
         "user": {
           "name": "Lina Tremblay",
           "id": 3
-        },"followers": [
+        },
+        etc...
+      "followers": [
       {
         "id": 16,
         "name": "Dr. Isaiah Crooks",
@@ -187,7 +189,7 @@ On Success: {
 
 On Validation failure:
 
-{"error": "You need to be logged in to do that", } OR
+{"error": "You need to be logged in to do that"} OR
 
 { "body": ["is too long (maximum is 160 characters)"]}
 
@@ -249,4 +251,59 @@ On success: (200)
 
 On validation failure: (404) {"error": "You need to be logged in to do that"}
 
-###
+### GET - <https://guarded-bayou-26088.herokuapp.com/users> GET a list of all users.
+
+Required params:
+
+`token`
+
+On success:
+
+```json
+{
+  "users": [
+    {
+      "id": 89,
+      "name": "Aaliyah Abernathy",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits",
+      "followers_count": 0,
+      "followees_count": 3,
+      "tweet_count": 0,
+      "currently_being_followed": false
+    },
+    {
+      "id": 61,
+      "name": "Adaline Miller DVM",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits",
+      "followers_count": 1,
+      "followees_count": 0,
+      "tweet_count": 0,
+      "currently_being_followed": false
+    },
+```
+
+On validation failure: {"error": "You need to be logged in to do that"}
+
+### POST <https://guarded-bayou-26088.herokuapp.com/follow/5>
+
+Required params:
+
+`token`
+
+`id` (as follow/:id)
+
+On success: (200)
+
+On validation failure: (400) {"error": "You need to be logged in to do that"}, OR {"error": "You cannot follow someone you are already following"}
+
+### POST <https://guarded-bayou-26088.herokuapp.com/follow/5>
+
+Required params:
+
+`token`
+
+`id` (as follow/:id)
+
+On success: (200)
+
+On validation failure: (400) {"error": "You need to be logged in to do that"}, OR {"error": "You must be following someone to unfollow them."}
