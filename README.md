@@ -302,4 +302,4 @@ On Validation failure:
 
 { "body": ["is too long (maximum is 160 characters)"]}
 
-### H3 GET - <https://guarded-bayou-26088.herokuapp.com/user> Get a single user
+### H3 GET - <https://guarded-bayou-26088.herokuapp.com/user> Get the information of a single user.
