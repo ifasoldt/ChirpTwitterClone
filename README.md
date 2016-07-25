@@ -242,6 +242,7 @@ Required params:
 
 On Success: {
 
+
   "user": {
 
     "id": 3,
@@ -292,3 +293,13 @@ On Success: {
 
         "created_at": "2016-07-22T05:59:11.000Z"
       },
+
+      etc.
+
+On Validation failure:
+
+{"error": "You need to be logged in to do that", } OR
+
+{ "body": ["is too long (maximum is 160 characters)"]}
+
+### H3 GET - <https://guarded-bayou-26088.herokuapp.com/user> Get a single user
