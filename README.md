@@ -338,7 +338,9 @@ On success:{
       "name": "Courtney Jast",
       "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
     },
-``` etc.
+```
+
+etc.
 
 If no results: { "error": "I'm sorry, it doesn't look there are any results that match your search term"}
 
