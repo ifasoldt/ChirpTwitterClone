@@ -288,7 +288,9 @@ On success:
 
 On validation failure: {"error": "You need to be logged in to do that"}
 
-### POST <https://guarded-bayou-26088.herokuapp.com/follow/5>
+---
+
+### POST <https://guarded-bayou-26088.herokuapp.com/follow/5> Post follow a user.
 
 Required params:
 
@@ -302,7 +304,7 @@ On validation failure: (400) {"error": "You need to be logged in to do that"}, O
 
 ---
 
-### POST <https://guarded-bayou-26088.herokuapp.com/follow/5>
+### POST <https://guarded-bayou-26088.herokuapp.com/unfollow/5> POST unfollow a user.
 
 Required params:
 
@@ -316,4 +318,100 @@ On validation failure: (400) {"error": "You need to be logged in to do that"}, O
 
 ---
 
-###
+### POST <https://guarded-bayou-26088.herokuapp.com/users_search?search_term=as> POST search database for users
+
+Required params:
+
+`search_term`
+
+On success:{
+  ```json
+
+  "users": [
+    {
+      "id": 10,
+      "name": "Cassandre Will MD",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
+    },
+    {
+      "id": 70,
+      "name": "Courtney Jast",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
+    },
+``` etc.
+
+If no results: { "error": "I'm sorry, it doesn't look there are any results that match your search term"}
+
+If no search_term input: Search will return a list of all users.
+
+---
+
+### GET <https://guarded-bayou-26088.herokuapp.com/tweets_search?search_term=as> GET database search of all tweets.
+
+Required params:
+
+`search_term`
+
+On success:
+
+```json
+"tweets": [
+  {
+    "id": 205,
+    "body": "consequatur est voluptas ipsum rem iure",
+    "user": {
+      "name": "Marian Schmeler",
+      "id": 4
+    },
+    "created_at": "2016-07-22T16:21:23.000Z"
+  },
+  {
+    "id": 1112,
+    "body": "et facere tenetur dolor omnis quam a cum voluptatibus quas porro",
+    "user": {
+      "name": "Laurie Orn",
+      "id": 2
+    },
+    "created_at": "2016-07-22T03:21:41.000Z"
+  },
+```
+
+If no results: { "error": "I'm sorry, it doesn't look there are any results that match your search term"}
+
+If no search_term input: Search will return a list of all tweets.
+
+---
+
+### GET <https://guarded-bayou-26088.herokuapp.com/total_search?search_term=as> GET database search of all tweets and users, users first.
+
+Required params:
+
+`search_term`
+
+On success:
+
+```json
+{
+  "users": [
+    {
+      "id": 24,
+      "name": "Abigale O'Conner",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
+    },
+    {
+      "id": 101,
+      "name": "Isaiah Fasoldt",
+      "picture_url": null
+    },
+    {
+      "id": 30,
+      "name": "Jermaine Pouros PhD",
+      "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
+    },
+```
+
+If no results: { "error": "I'm sorry, it doesn't look there are any results that match your search term"}
+
+If no search_term input: Search will return a list of all tweets.
+
+---
