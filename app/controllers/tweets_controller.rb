@@ -1,16 +1,22 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :update, :destroy]
-  before_action :require_user
+  before_action :require_user, except: [:index]
 
 
   #Tony or I probably should redirect if current user is not logged in.
 
 
   def index
-    if params[:page]
+    if params[:page] && current_user
       render json: current_user, scope: {page: params[:page]}, serializer: UserWithTweetsSerializer, meta: {total_pages: current_user.timeline_tweets.count/25}
-    else
+    elsif current_user
       render json: current_user, serializer: UserWithTweetsSerializer
+    elsif params[:page]
+      @tweets = Tweet.all.page(params[:page])
+      render json: @tweets
+    else
+      @tweets = Tweet.all
+      render json: @tweets
     end
   end
 
