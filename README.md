@@ -43,97 +43,101 @@ On validation failure: { "error": "Email and/or password does not exist, please 
 ### GET - <https://guarded-bayou-26088.herokuapp.com/tweets> Current User's Timeline.
 
 Required params:
-`token`
+`token` (if no token, will just return a list of ALL tweets without any current user info--behaves more like and index of all tweets.)
+
+Optional params:
+`page`
 
 Returns:
 
 On success (200): {
 ```json
-  "user": {
-    "id": 3,
-    "name": "Lina Tremblay",
-    "email": "iliana_balistreri@altenwerthwilderman.net",
-    "picture_url": "http://photo.net/photodb/random-photo?category=Portraits",
-    "followers_count": 1,
-    "followees_count": 2,
-    "timeline_tweets": [
-      {
-        "id": 2043,
-        "body": "dolor praesentium eum rerum repellendus deleniti quam quisquam eos",
+{
+"user": {
+  "id": 1,
+  "name": "Katrina Koss",
+  "email": "naomie@kaulkeklein.net",
+  "picture_url": "http://photo.net/photodb/random-photo?category=Portraits",
+  "followers_count": 1,
+  "followees_count": 3,
+  "timeline_tweets": [{
+        "id": 966,
+        "body": "officiis aperiam sed consectetur aliquam earum fuga suscipit consequatur sunt quos repellendus culpa perspiciatis",
         "user": {
-          "name": "Lina Tremblay",
-          "id": 3
+          "name": "Neal Wolff IV",
+          "id": 6,
+          "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
         },
-        "created_at": "2016-07-22T05:59:11.000Z"
+        "created_at": "2016-07-07T21:56:11.000Z"
       },
       {
-        "id": 875,
-        "body": "pariatur omnis eligendi at consequatur dignissimos non dolore similique laudantium ducimus nihil nesciunt quidem laborum",
+        "id": 2453,
+        "body": "delectus sunt quis",
         "user": {
-          "name": "Lina Tremblay",
-          "id": 3
+          "name": "Katrina Koss",
+          "id": 1,
+          "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
         },
-        "created_at": "2016-07-13T04:36:16.000Z"
+        "created_at": "2016-07-06T07:49:50.000Z"
       },
       {
-        "id": 222,
-        "body": "vitae impedit aut minus",
+        "id": 32,
+        "body": "aliquam et dolorem aut commodi numquam excepturi qui",
         "user": {
-          "name": "Lina Tremblay",
-          "id": 3
+          "name": "Katrina Koss",
+          "id": 1,
+          "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
         },
-        etc...
-      "followers": [
+        "created_at": "2016-07-04T18:24:23.000Z"
+      }],
+    "followers": [
       {
-        "id": 16,
-        "name": "Dr. Isaiah Crooks",
-        "email": "jaycee.mccullough@blickgutmann.org",
+        "id": 30,
+        "name": "Jermaine Pouros PhD",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       }
     ],
     "followees": [
       {
-        "id": 55,
-        "name": "Dorothea Hamill",
-        "email": "jennie@bins.info",
+        "id": 6,
+        "name": "Neal Wolff IV",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       },
       {
-        "id": 88,
-        "name": "Breanna Moen",
-        "email": "helene_stoltenberg@lesch.com",
+        "id": 65,
+        "name": "Baby Weber DDS",
+        "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
+      },
+      {
+        "id": 41,
+        "name": "Zoila Lockman",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       }
     ],
     "suggested_people_to_follow": [
       {
-        "id": 19,
-        "name": "Norwood Hodkiewicz",
-        "email": "brannon.okeefe@bartolettiwest.com",
+        "id": 89,
+        "name": "Mona Beahan",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       },
       {
-        "id": 60,
-        "name": "Wade Kuphal Jr.",
-        "email": "brycen@beahan.io",
+        "id": 33,
+        "name": "Georgette Franecki",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       },
       {
-        "id": 71,
-        "name": "Reva Waters",
-        "email": "arielle@zieme.io",
+        "id": 54,
+        "name": "Brandy Crooks PhD",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       },
       {
-        "id": 27,
-        "name": "Americo Balistreri",
-        "email": "reagan_hudson@rauboyer.io",
+        "id": 96,
+        "name": "Amir Haag",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       },
       {
-        "id": 25,
-        "name": "Jayden Purdy",
-        "email": "quinton@beahanboyer.com",
+        "id": 85,
+        "name": "Eleanore Lehner",
         "picture_url": "http://photo.net/photodb/random-photo?category=Portraits"
       }
     ]
